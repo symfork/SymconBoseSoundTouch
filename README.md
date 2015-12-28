@@ -4,6 +4,8 @@ PHP Module for IP-Symcon to integrate Bose SoundTouch Devices
 
 [![Downloads](https://img.shields.io/github/downloads/ubittner/SymconBoseSoundTouch/latest/total.svg)](https://github.com/ubittner/SymconBoseSoundTouch/releases/latest)
 
+[grd_count user="ubittner" repo="SymconBoseSoundTouch"]
+
 ## Documentation
 
 **Content**
