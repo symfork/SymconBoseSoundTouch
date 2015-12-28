@@ -1,0 +1,9 @@
+{
+	"elements":
+	[
+      { "name": "Room", "type": "ValidationTextBox", "caption": "Room" },
+      { "name": "DeviceIP", "type": "ValidationTextBox", "caption": "IP-Address" },
+      { "name": "DeviceID", "type": "ValidationTextBox", "caption": "Device-ID" },
+      { "name": "Timeout", "type": "ValidationTextBox", "caption": "Timeout"},
+   ],
+}
