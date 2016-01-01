@@ -1,6 +1,7 @@
 # Symcon Bose SoundTouch
 
-PHP Module for IP-Symcon to integrate Bose SoundTouch Devices
+PHP Module for IP-Symcon to integrate Bose SoundTouch Devices  
+
 [![license](https://i.creativecommons.org/l/by-nc/4.0/88x31.png "Creative Commons Attribution-NonCommercial 4.0 International License")](http://creativecommons.org/licenses/by-nc/4.0/)  
 
 ## Documentation
