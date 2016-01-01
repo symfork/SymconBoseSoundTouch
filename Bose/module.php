@@ -9,7 +9,9 @@ filename:       module.php
 description:    Bose SoundTouch module
 version         1.0.0
 date:           28.12.2015
-publisher:      (c) 2015 Ulrich Bittner
+publisher:      Copyright (c) 2015, 2016 Ulrich Bittner
+license:        CC BY-NC 4.0 Creative Commons Attribution-NonCommercial 4.0 International License
+                http://creativecommons.org/licenses/by-nc/4.0/
 environment:    IP-Symcon 4.0 (beta) on RPi
 
 changelog:      version 1.0.0 28.12.2015 initialscript
@@ -17,6 +19,7 @@ changelog:      version 1.0.0 28.12.2015 initialscript
 todo:           (none)
 
 github:         https://github.com/ubittner/SymconBoseSoundTouch.git
+symcon forum:   https://www.symcon.de/forum/threads/29922-Bose-SoundTouch-Modul
 
 */
 
@@ -295,6 +298,29 @@ class BoseSoundTouch extends IPSModule
 
         // device information script
         $DeviceInformationControlScript ='<?
+/*
+
+SymconBoseSoundTouch
+
+Bose SoundTouch Module for IP-Symcon
+
+filename:       DeviceInformationControl.php
+description:    Device Information Control Script
+version         1.0.0
+date:           28.12.2015
+publisher:      Copyright (c) 2015, 2016 Ulrich Bittner
+license:        CC BY-NC 4.0 Creative Commons Attribution-NonCommercial 4.0 International License
+environment:    IP-Symcon 4.0 (beta) on RPi
+
+changelog:      version 1.0.0 28.12.2015 initialscript
+
+todo:           (none)
+
+github:         https://github.com/ubittner/SymconBoseSoundTouch.git
+symcon forum:   https://www.symcon.de/forum/threads/29922-Bose-SoundTouch-Modul
+
+*/
+
 if ($_IPS["SENDER"] == "Execute") {
 	addRadioStations();
 }
@@ -511,7 +537,8 @@ filename:       AlarmClockControl.php
 description:    Alarm Clock Control Script
 version         1.0.0
 date:           28.12.2015
-publisher:      (c) 2015 Ulrich Bittner
+publisher:      Copyright (c) 2015, 2016 Ulrich Bittner
+license:        CC BY-NC 4.0 Creative Commons Attribution-NonCommercial 4.0 International License
 environment:    IP-Symcon 4.0 (beta) on RPi
 
 changelog:      version 1.0.0 28.12.2015 initialscript
@@ -519,6 +546,7 @@ changelog:      version 1.0.0 28.12.2015 initialscript
 todo:           (none)
 
 github:         https://github.com/ubittner/SymconBoseSoundTouch.git
+symcon forum:   https://www.symcon.de/forum/threads/29922-Bose-SoundTouch-Modul
 
 */
 
@@ -659,7 +687,8 @@ filename:       SleepTimerControl.php
 description:    Sleep Timer Control Script
 version         1.0.0
 date:           28.12.2015
-publisher:      (c) 2015 Ulrich Bittner
+publisher:      Copyright (c) 2015, 2016 Ulrich Bittner
+license:        CC BY-NC 4.0 Creative Commons Attribution-NonCommercial 4.0 International License
 environment:    IP-Symcon 4.0 (beta) on RPi
 
 changelog:      version 1.0.0 28.12.2015 initialscript
@@ -667,6 +696,7 @@ changelog:      version 1.0.0 28.12.2015 initialscript
 todo:           (none)
 
 github:         https://github.com/ubittner/SymconBoseSoundTouch.git
+symcon forum:   https://www.symcon.de/forum/threads/29922-Bose-SoundTouch-Modul
 
 */
 
