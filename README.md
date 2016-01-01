@@ -6,16 +6,16 @@ PHP Module for IP-Symcon to integrate Bose SoundTouch Devices
 
 **Content**
 
-0. [license](#0-license)
-1. [purpose](#1-purpose) 
-2. [environment](#2-environment) 
-3. [functional range](#3-functional-range) 
-4. [requirements](#4-requirements)
-5. [installation & configuration](#5-installation--configuration)
-6. [operation manual](#6-operation-manual)
-7. [api functions](#7-api-functions)
+1. [license](#1-license)
+2. [purpose](#2-purpose) 
+3. [environment](#3-environment) 
+4. [functional range](#4-functional-range) 
+5. [requirements](#5-requirements)
+6. [installation & configuration](#6-installation--configuration)
+7. [operation manual](#7-operation-manual)
+8. [api functions](#8-api-functions)
 
-## 0. license
+## 1. license
 
 SymconBoseSoundTouch by Ulrich Bittner is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.  
 Based on a work at https://github.com/ubittner/SymconBoseSoundTouch.  
@@ -24,17 +24,17 @@ Permissions beyond the scope of this license may be available at https://github.
 For more information see LICENSE.MD
 
 
-## 1. purpose
+## 2. purpose
 
 The purpose of this repository is to integrate and control Bose SoundTouch devices in IP-Symcon. 
 
 
-## 2. environment
+## 3. environment
 
 The code was developed and tested under IP-Symcon Version 4.X in beta phase on a raspberry pi 2. 
 
 
-## 3. functional range
+## 4. functional range
 
 This module integrates Bose SoundTouch devices in IP-Symcon.
 
@@ -47,13 +47,13 @@ The folowing functions are implemented:
 All other functions are not included right now. 
 
 
-## 4. requirements
+## 5. requirements
 
 - IPS 4.x
 - Bose SoundTouch Device
 
 
-## 5. installation & configuration
+## 6. installation & configuration
 
 - installation in IPS 4.x
 
@@ -89,7 +89,7 @@ Will be read out automatically
 - use categories for a better overview  
 ![UseCategories](/Screenshots/08-categories.jpg)
 
-## 6. operation manual
+## 7. operation manual
 
 
 - overview of module  
@@ -118,7 +118,7 @@ Will be read out automatically
 - Next Power Off: shows the next sleep timer event
 
 
-## 7. api functions
+## 8. api functions
 
 get functions:  
 
