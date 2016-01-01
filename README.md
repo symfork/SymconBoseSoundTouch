@@ -2,6 +2,12 @@
 
 PHP Module for IP-Symcon to integrate Bose SoundTouch Devices
 
+[![license](https://i.creativecommons.org/l/by-nc/4.0/88x31.png "Creative Commons Attribution-NonCommercial 4.0 International License")](http://creativecommons.org/licenses/by-nc/4.0/)
+
+SymconBoseSoundTouch by Ulrich Bittner is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).  
+Based on a work at https://github.com/ubittner/SymconBoseSoundTouch.  
+Permissions beyond the scope of this license may be available at https://github.com/ubittner/SymconBoseSoundTouch.  
+
 ## Documentation
 
 **Content**
