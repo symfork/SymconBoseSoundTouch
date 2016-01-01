@@ -9,7 +9,9 @@ filename:       bose_soundtouch_api.php
 description:    Bose SoundTouch API
 version         1.0.0
 date:           12.12.2015
-publisher:      (c) 2015 Ulrich Bittner
+publisher:      Copyright (c) 2015, 2016 Ulrich Bittner
+license:        CC BY-NC 4.0 Creative Commons Attribution-NonCommercial 4.0 International License
+                http://creativecommons.org/licenses/by-nc/4.0/
 environment:    IP-Symcon 4.0 (beta) on RPi
 
 changelog:      version 1.0.0 12.12.2015 initialscript
@@ -17,6 +19,7 @@ changelog:      version 1.0.0 12.12.2015 initialscript
 todo:           (none)
 
 github:         https://github.com/ubittner/SymconBoseSoundTouch.git
+symcon forum:   https://www.symcon.de/forum/threads/29922-Bose-SoundTouch-Modul
 
 
 get funvtions:  getDevicePresetsAPI
