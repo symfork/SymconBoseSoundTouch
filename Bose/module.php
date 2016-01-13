@@ -7,14 +7,15 @@ Bose SoundTouch Module for IP-Symcon
 
 filename:       module.php
 description:    Bose SoundTouch module
-version         1.0.0
-date:           28.12.2015
+version         1.0.1
+date:           13.01.2016
 publisher:      Copyright (c) 2015, 2016 Ulrich Bittner
 license:        CC BY-NC 4.0 Creative Commons Attribution-NonCommercial 4.0 International License
                 http://creativecommons.org/licenses/by-nc/4.0/
 environment:    IP-Symcon 4.0 (beta) on RPi
 
-changelog:      version 1.0.0 28.12.2015 initialscript
+changelog:      version 1.0.1 13.01.2016 fix in DeviceInformationControlScript
+                version 1.0.0 28.12.2015 initialscript
 
 todo:           (none)
 
@@ -306,13 +307,14 @@ Bose SoundTouch Module for IP-Symcon
 
 filename:       DeviceInformationControl.php
 description:    Device Information Control Script
-version         1.0.0
-date:           28.12.2015
+version         1.0.1
+date:           13.01.2016
 publisher:      Copyright (c) 2015, 2016 Ulrich Bittner
 license:        CC BY-NC 4.0 Creative Commons Attribution-NonCommercial 4.0 International License
 environment:    IP-Symcon 4.0 (beta) on RPi
 
-changelog:      version 1.0.0 28.12.2015 initialscript
+changelog:      version 1.0.1 13.01.2016 multiroom fix for single device
+                version 1.0.0 28.12.2015 initialscript
 
 todo:           (none)
 
@@ -322,195 +324,199 @@ symcon forum:   https://www.symcon.de/forum/threads/29922-Bose-SoundTouch-Modul
 */
 
 if ($_IPS["SENDER"] == "Execute") {
-	addRadioStations();
+    addRadioStations();
 }
 if ($_IPS["SENDER"] == "TimerEvent") {
-	getDeviceInformation();
+    getDeviceInformation();
 }
 
 function addRadioStations()
 {
-   // Radio Stations
-   // if you want less radio stations, delete the unnecessary positions
-   // if you want to have more radio stations, add positions
-   // get the radio station location id from www.vtuner.com
-   // http://vtuner.com/setupapp/guide/asp/BrowseStations/startpage.asp
-   // example for WDR 2 Ruhrgebiet
-   // url: http://www.vtuner.com/vtunerweb/mms/m3u32760.m3u
-   // location = 32760
+    // Radio Stations
+    // if you want less radio stations, delete the unnecessary positions
+    // if you want to have more radio stations, add positions
+    // get the radio station location id from www.vtuner.com
+    // http://vtuner.com/setupapp/guide/asp/BrowseStations/startpage.asp
+    // example for WDR 2 Ruhrgebiet
+    // url: http://www.vtuner.com/vtunerweb/mms/m3u32760.m3u
+    // location = 32760
 
-   // Radio Station 7
-	$RadioStations["station7"]["name"]         = "AH.FM";
-	$RadioStations["station7"]["location"]     = "24836";
-   // Radio Station 8
-	$RadioStations["station8"]["name"]         = "Sunshine Live Classics";
-	$RadioStations["station8"]["location"]     = "44882";
-   // Radio Station 9
-	$RadioStations["station9"]["name"]         = "Sunshine Live Trance";
-	$RadioStations["station9"]["location"]     = "48651";
-   // Radio Station 10
-	$RadioStations["station10"]["name"]        = "Sunshine Live Be Easy";
-	$RadioStations["station10"]["location"]    = "44879";
-   // Radio Station 11
-	$RadioStations["station11"]["name"]        = "Sunshine Live Be DJ";
-	$RadioStations["station11"]["location"]    = "44881";
-   // Radio Station 12
-	$RadioStations["station12"]["name"]        = "Sunshine Live Radioclub";
-	$RadioStations["station12"]["location"]    = "62373";
-   // Radio Station 13
-	$RadioStations["station13"]["name"]        = "SPORT1.fm";
-	$RadioStations["station13"]["location"]    = "52773";
-   // Radio Station 14
-	$RadioStations["station14"]["name"]        = "SPORT1.fm Spiel1";
-	$RadioStations["station14"]["location"]    = "53341";
-   // Radio Station 15
-	$RadioStations["station15"]["name"]        = "SPORT1.fm Spiel2";
-	$RadioStations["station15"]["location"]    = "53343";
-   // Radio Station 16
-	$RadioStations["station16"]["name"]        = "SPORT1.fm Spiel3";
-	$RadioStations["station16"]["location"]    = "53344";
-   // Radio Station 17
-	$RadioStations["station17"]["name"]        = "SPORT1.fm Spiel4";
-	$RadioStations["station17"]["location"]    = "53346";
-   // Radio Station 18
-	$RadioStations["station18"]["name"]        = "SPORT1.fm Spiel5";
-	$RadioStations["station18"]["location"]    = "53347";
-   // Radio Station 19
-	$RadioStations["station19"]["name"]        = "SPORT1.fm Spiel6";
-	$RadioStations["station19"]["location"]    = "53349";
-   // Radio Station 20
-	$RadioStations["station20"]["name"]        = "WDR2 Ruhrgebiet";
-	$RadioStations["station20"]["location"]    = "32760";
-   // Radio Station 21
-	$RadioStations["station21"]["name"]        = "BFBS Germany";
-	$RadioStations["station21"]["location"]    = "35142";
+    // Radio Station 7
+    $RadioStations["station7"]["name"]         = "AH.FM";
+    $RadioStations["station7"]["location"]     = "24836";
+    // Radio Station 8
+    $RadioStations["station8"]["name"]         = "Sunshine Live Classics";
+    $RadioStations["station8"]["location"]     = "44882";
+    // Radio Station 9
+    $RadioStations["station9"]["name"]         = "Sunshine Live Trance";
+    $RadioStations["station9"]["location"]     = "48651";
+    // Radio Station 10
+    $RadioStations["station10"]["name"]        = "Sunshine Live Be Easy";
+    $RadioStations["station10"]["location"]    = "44879";
+    // Radio Station 11
+    $RadioStations["station11"]["name"]        = "Sunshine Live Be DJ";
+    $RadioStations["station11"]["location"]    = "44881";
+    // Radio Station 12
+    $RadioStations["station12"]["name"]        = "Sunshine Live Radioclub";
+    $RadioStations["station12"]["location"]    = "62373";
+    // Radio Station 13
+    $RadioStations["station13"]["name"]        = "SPORT1.fm";
+    $RadioStations["station13"]["location"]    = "52773";
+    // Radio Station 14
+    $RadioStations["station14"]["name"]        = "SPORT1.fm Spiel1";
+    $RadioStations["station14"]["location"]    = "53341";
+    // Radio Station 15
+    $RadioStations["station15"]["name"]        = "SPORT1.fm Spiel2";
+    $RadioStations["station15"]["location"]    = "53343";
+    // Radio Station 16
+    $RadioStations["station16"]["name"]        = "SPORT1.fm Spiel3";
+    $RadioStations["station16"]["location"]    = "53344";
+    // Radio Station 17
+    $RadioStations["station17"]["name"]        = "SPORT1.fm Spiel4";
+    $RadioStations["station17"]["location"]    = "53346";
+    // Radio Station 18
+    $RadioStations["station18"]["name"]        = "SPORT1.fm Spiel5";
+    $RadioStations["station18"]["location"]    = "53347";
+    // Radio Station 19
+    $RadioStations["station19"]["name"]        = "SPORT1.fm Spiel6";
+    $RadioStations["station19"]["location"]    = "53349";
+    // Radio Station 20
+    $RadioStations["station20"]["name"]        = "WDR2 Ruhrgebiet";
+    $RadioStations["station20"]["location"]    = "32760";
+    // Radio Station 21
+    $RadioStations["station21"]["name"]        = "BFBS Germany";
+    $RadioStations["station21"]["location"]    = "35142";
 
-   // extend radio station and radio location profile
-	$instanceid = IPS_GetParent($_IPS["SELF"]);
-	$presetprofilename = "bose.Device".$instanceid."RadioStations";
-	$radiolocationsprofilename = "bose.Device".$instanceid."RadioLocations";
-	$variable = $RadioStations;
-	$i = 7;
-	foreach ($variable as $key => $value) {
-		$radiostationname = $value["name"];
-		$radiostationlocation = $value["location"];
-		IPS_SetVariableProfileAssociation($presetprofilename, "".$i."", "".$radiostationname."", "", 0x0000FF);
-		IPS_SetVariableProfileAssociation($radiolocationsprofilename, "".$i."", "".$radiostationlocation."", "", 0x0000FF);
-		$i++;
-	}
+    // extend radio station and radio location profile
+    $instanceid = IPS_GetParent($_IPS["SELF"]);
+    $presetprofilename = "bose.Device".$instanceid."RadioStations";
+    $radiolocationsprofilename = "bose.Device".$instanceid."RadioLocations";
+    $variable = $RadioStations;
+    $i = 7;
+    foreach ($variable as $key => $value) {
+        $radiostationname = $value["name"];
+        $radiostationlocation = $value["location"];
+        IPS_SetVariableProfileAssociation($presetprofilename, "".$i."", "".$radiostationname."", "", 0x0000FF);
+        IPS_SetVariableProfileAssociation($radiolocationsprofilename, "".$i."", "".$radiostationlocation."", "", 0x0000FF);
+        $i++;
+    }
 }
 
 function getDeviceInformation()
 {
-	$deviceip = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "DeviceIP");
-	$timeout = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "Timeout");
-	$instanceid = IPS_GetParent($_IPS["SELF"]);
-	if ($deviceip == "") {
-		die;
-	}
-	try {
-      // check device availibility
-		if ($timeout && Sys_Ping($deviceip, $timeout) != true) {
-			throw new Exception("Device ".$deviceip." is not available");
-		}
-		include_once("../modules/SymconBoseSoundTouch/Bose/bose_soundtouch_api.php");
-		$bosedevice = new BoseSoundTouchAPI($deviceip);
-		$result = $bosedevice->getDeviceNowPlayingAPI();
-		// power switch
-		if ($result["devicemode"] == "Standby") {
-			$powerstate = false;
-		}
-		else {
-			$powerstate = true;
-		}
-		$powerswitch =  GetValue(IPS_GetObjectIDByName("Device Power", IPS_GetParent($_IPS["SELF"])));
-		if ($powerstate <> $powerswitch) {
-			SetValue(IPS_GetObjectIDByName("Device Power", IPS_GetParent($_IPS["SELF"])), $powerstate);
-		}
-		// device mode
-		$devicemode = GetValue(IPS_GetObjectIDByName("Device Mode", IPS_GetParent($_IPS["SELF"])));
-		if ($result["devicemode"] <> $devicemode) {
-			SetValue(IPS_GetObjectIDByName("Device Mode", IPS_GetParent($_IPS["SELF"])), $result["devicemode"]);
-		}
-      // device state
-		$devicestate = GetValue(IPS_GetObjectIDByName("Device State", IPS_GetParent($_IPS["SELF"])));
-		if ($result["devicestate"] <> $devicestate) {
-			SetValue(IPS_GetObjectIDByName("Device State", IPS_GetParent($_IPS["SELF"])), $result["devicestate"]);
-		}
-      // now playing
-		$nowplaying = GetValue(IPS_GetObjectIDByName("Now Playing", IPS_GetParent($_IPS["SELF"])));
-		if ($result["nowplaying"] <> $nowplaying) {
-			SetValue(IPS_GetObjectIDByName("Now Playing", IPS_GetParent($_IPS["SELF"])), $result["nowplaying"]);
-			$instanceid = IPS_GetParent($_IPS["SELF"]);
-			$associations = IPS_GetVariableProfile("bose.Device".$instanceid."RadioStations")["Associations"];
-			$index = 0;
-			foreach($associations as $key => $value) {
-				if ($value["Name"] == $result["nowplaying"]) {
-					$index = $value["Value"];
-				}
-			}
-			if ($index <> 0){
-				SetValue(IPS_GetObjectIDByName("Radio", IPS_GetParent($_IPS["SELF"])), $index);
-			}
-		}
-      // description
-		$description = GetValue(IPS_GetObjectIDByName("Description", IPS_GetParent($_IPS["SELF"])));
-		if ($result["description"] <> $description) {
-			SetValue(IPS_GetObjectIDByName("Description", IPS_GetParent($_IPS["SELF"])), $result["description"]);
-		}
-      // logo
-		$logo = GetValue(IPS_GetObjectIDByName("Logo", IPS_GetParent($_IPS["SELF"])));
-		if ($result["logourl"] <> $logo) {
-			SetValue(IPS_GetObjectIDByName("Logo", IPS_GetParent($_IPS["SELF"])), $result["logourl"]);
-		}
-      // volume
-		$result = $bosedevice->getDeviceVolumeAPI();
-		$volumeslider = GetValue(IPS_GetObjectIDByName("Volume", IPS_GetParent($_IPS["SELF"])));
-		if ($result["actualvolume"] <> $volumeslider) {
-			SetValue(IPS_GetObjectIDByName("Volume", IPS_GetParent($_IPS["SELF"])), $result["actualvolume"]);
-		}
-		// zone
-		$result = $bosedevice->getDeviceZoneAPI();
-		$zonemasterid = $result["zonemasterid"];
-		$zonememberid = $result["zonememberid"];
-		$deviceid = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "DeviceID");
-		$zonemembers = $result["zonememberid"];
-		$zonemember = false;
-		$masterzone = 0;
-		foreach ($zonemembers as $key => $value) {
-			// device is member
-			if ($value == $deviceid) {
-				// device is the master
-				if ($zonemasterid == $deviceid) {
-				   $masterzone = 0;
-				}
-				// get zone master
-				else {
-				   $allboseinstances = IPS_GetInstanceListByModuleID("{4836EF46-FF79-4D6A-91C9-FE54F1BDF2DB}");
-					foreach ($allboseinstances as $key => $value) {
-						$masterdeviceid = IPS_GetProperty($value, "DeviceID");
-						if ($masterdeviceid == $zonemasterid) {
-   						$zonemastername = IPS_GetName($value);
-						}
-					}
-					$associations = IPS_GetVariableProfile("bose.Device".$instanceid."MasterZones")["Associations"];
-					foreach($associations as $key => $value) {
-						if ($value["Name"] == $zonemastername) {
-            			$masterzone = $value["Value"];
-            		}
-        			}
-				}
-			} 
-      }
-		$zonestate = GetValue(IPS_GetObjectIDByName("Join Zone (MultiRoom)", IPS_GetParent($_IPS["SELF"])));
-		if ($masterzone <> $zonestate) {
-			SetValue(IPS_GetObjectIDByName("Join Zone (MultiRoom)", IPS_GetParent($_IPS["SELF"])), $masterzone);
-		}
-	}
+    $deviceip = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "DeviceIP");
+    $timeout = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "Timeout");
+    $instanceid = IPS_GetParent($_IPS["SELF"]);
+    if ($deviceip == "") {
+        die;
+    }
+    try {
+        // check device availibility
+        if ($timeout && Sys_Ping($deviceip, $timeout) != true) {
+            throw new Exception("Device ".$deviceip." is not available");
+        }
+        include_once("../modules/SymconBoseSoundTouch/Bose/bose_soundtouch_api.php");
+        $bosedevice = new BoseSoundTouchAPI($deviceip);
+        $result = $bosedevice->getDeviceNowPlayingAPI();
+        // power switch
+        if ($result["devicemode"] == "Standby") {
+            $powerstate = false;
+        }
+        else {
+            $powerstate = true;
+        }
+        $powerswitch =  GetValue(IPS_GetObjectIDByName("Device Power", IPS_GetParent($_IPS["SELF"])));
+        if ($powerstate <> $powerswitch) {
+            SetValue(IPS_GetObjectIDByName("Device Power", IPS_GetParent($_IPS["SELF"])), $powerstate);
+        }
+        // device mode
+        $devicemode = GetValue(IPS_GetObjectIDByName("Device Mode", IPS_GetParent($_IPS["SELF"])));
+        if ($result["devicemode"] <> $devicemode) {
+            SetValue(IPS_GetObjectIDByName("Device Mode", IPS_GetParent($_IPS["SELF"])), $result["devicemode"]);
+        }
+        // device state
+        $devicestate = GetValue(IPS_GetObjectIDByName("Device State", IPS_GetParent($_IPS["SELF"])));
+        if ($result["devicestate"] <> $devicestate) {
+            SetValue(IPS_GetObjectIDByName("Device State", IPS_GetParent($_IPS["SELF"])), $result["devicestate"]);
+        }
+        // now playing
+        $nowplaying = GetValue(IPS_GetObjectIDByName("Now Playing", IPS_GetParent($_IPS["SELF"])));
+        if ($result["nowplaying"] <> $nowplaying) {
+            SetValue(IPS_GetObjectIDByName("Now Playing", IPS_GetParent($_IPS["SELF"])), $result["nowplaying"]);
+            $instanceid = IPS_GetParent($_IPS["SELF"]);
+            $associations = IPS_GetVariableProfile("bose.Device".$instanceid."RadioStations")["Associations"];
+            $index = 0;
+            foreach($associations as $key => $value) {
+                if ($value["Name"] == $result["nowplaying"]) {
+                    $index = $value["Value"];
+                }
+            }
+            if ($index <> 0){
+                SetValue(IPS_GetObjectIDByName("Radio", IPS_GetParent($_IPS["SELF"])), $index);
+            }
+        }
+        // description
+        $description = GetValue(IPS_GetObjectIDByName("Description", IPS_GetParent($_IPS["SELF"])));
+        if ($result["description"] <> $description) {
+            SetValue(IPS_GetObjectIDByName("Description", IPS_GetParent($_IPS["SELF"])), $result["description"]);
+        }
+        // logo
+        $logo = GetValue(IPS_GetObjectIDByName("Logo", IPS_GetParent($_IPS["SELF"])));
+        if ($result["logourl"] <> $logo) {
+            SetValue(IPS_GetObjectIDByName("Logo", IPS_GetParent($_IPS["SELF"])), $result["logourl"]);
+        }
+        // volume
+        $result = $bosedevice->getDeviceVolumeAPI();
+        $volumeslider = GetValue(IPS_GetObjectIDByName("Volume", IPS_GetParent($_IPS["SELF"])));
+        if ($result["actualvolume"] <> $volumeslider) {
+            SetValue(IPS_GetObjectIDByName("Volume", IPS_GetParent($_IPS["SELF"])), $result["actualvolume"]);
+        }
+        // zone
+        $allboseinstances = IPS_GetInstanceListByModuleID("{4836EF46-FF79-4D6A-91C9-FE54F1BDF2DB}");
+        $numberofdevices = count($allboseinstances);
+        if ($numberofdevices >1) {
+            $result = $bosedevice->getDeviceZoneAPI();
+            $zonemasterid = $result["zonemasterid"];
+            $zonememberid = $result["zonememberid"];
+            $deviceid = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "DeviceID");
+            $zonemembers = $result["zonememberid"];
+            $zonemember = false;
+            $masterzone = 0;
+            foreach ($zonemembers as $key => $value) {
+                // device is member
+                if ($value == $deviceid) {
+                    // device is the master
+                    if ($zonemasterid == $deviceid) {
+                       $masterzone = 0;
+                    }
+                    // get zone master
+                    else {
+                       $allboseinstances = IPS_GetInstanceListByModuleID("{4836EF46-FF79-4D6A-91C9-FE54F1BDF2DB}");
+                        foreach ($allboseinstances as $key => $value) {
+                            $masterdeviceid = IPS_GetProperty($value, "DeviceID");
+                            if ($masterdeviceid == $zonemasterid) {
+                            $zonemastername = IPS_GetName($value);
+                            }
+                        }
+                        $associations = IPS_GetVariableProfile("bose.Device".$instanceid."MasterZones")["Associations"];
+                        foreach($associations as $key => $value) {
+                            if ($value["Name"] == $zonemastername) {
+                            $masterzone = $value["Value"];
+                            }
+                        }
+                    }
+                } 
+          }
+        $zonestate = GetValue(IPS_GetObjectIDByName("Join Zone (MultiRoom)", IPS_GetParent($_IPS["SELF"])));
+            if ($masterzone <> $zonestate) {
+                SetValue(IPS_GetObjectIDByName("Join Zone (MultiRoom)", IPS_GetParent($_IPS["SELF"])), $masterzone);
+            }
+        }
+    }
    // error message
-	catch (Exception $e) {
-		echo $e->getMessage();
-	}
+    catch (Exception $e) {
+        echo $e->getMessage();
+    }
 }
 ?>';
         // create script
